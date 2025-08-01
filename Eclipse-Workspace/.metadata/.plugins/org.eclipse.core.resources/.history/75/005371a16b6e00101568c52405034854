@@ -1,0 +1,25 @@
+package br.com.senaisp.bauru.secao03.aula04;
+
+public class Chickens01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int totaleggs = 0;
+		int  eggsPerChicken = 5, chickenCount = 3;
+		//1º dia 
+		totaleggs += eggsPerChicken * chickenCount;
+		//2° dia
+		totaleggs += eggsPerChicken * ++chickenCount; //ganhou uma galinha
+		//3° dia 
+		chickenCount/=2;// animal come metade das galinhas 
+		totaleggs += eggsPerChicken * chickenCount;
+		//imprimir o total
+		System.out.println(totaleggs);
+		
+		
+		
+		System.out.println(totaleggs);
+	}
+
+}
