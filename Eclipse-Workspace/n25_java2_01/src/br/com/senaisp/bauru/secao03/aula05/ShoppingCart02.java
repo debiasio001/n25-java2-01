@@ -1,0 +1,24 @@
+package br.com.senaisp.bauru.secao03.aula05;
+
+public class ShoppingCart02 {
+
+	public static void main(String[] args) {
+		//declarar as variaveis do exercicio
+		String custName="Alex"; // nome do cliente
+		String itemDesc="Camisas"; // item a ser comprado 
+		double preco = 5.00;
+		double imposto = 18.00;
+		int quantidade = 2;
+		//montar a mensagem 
+		double totalPrice = preco * quantidade * (1 + imposto / 100);
+		//vamos precisar ajustar a mensagem para esse exercicio
+		String message =  custName + " quer comprar " + quantidade + " " + itemDesc +
+				"\nO custo total com imposto é R$: " + Math.round(totalPrice*100)/100.;
+		//math.round arredonda para parte inteira, por isso multiplico por 100 e 
+		// depois divido por 100.(divisão inteira iria suprimir as casas)
+		//imprimir a mensagem 
+		System.out.println(message);
+		
+	}
+
+}

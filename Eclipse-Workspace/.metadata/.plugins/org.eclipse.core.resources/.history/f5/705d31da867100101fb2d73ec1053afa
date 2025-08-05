@@ -1,0 +1,19 @@
+package br.com.senaisp.bauru.secao03.aula05;
+
+public class ShoppingCart02 {
+
+	public static void main(String[] args) {
+		//declarar as variaveis do exercicio
+		String custName="Alex"; // nome do cliente
+		String itemDesc="Camisas"; // item a ser comprado 
+		double preco = 0.00;
+		double imposto = 0.00;
+		int quantidade = 0;
+		//montar a mensagem 
+		double totalPrice = preco * quantidade * (1 + imposto / 100);
+		String message =  custName + " quer comprar " + "duas" + " " + itemDesc;
+		//imprimir a mensagem 
+		System.out.println(message);
+	}
+
+}
