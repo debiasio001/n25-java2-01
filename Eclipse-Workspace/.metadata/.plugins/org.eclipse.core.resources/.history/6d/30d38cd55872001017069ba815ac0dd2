@@ -1,0 +1,15 @@
+package JOptionPane;
+
+import javax.swing.JOptionPane;
+
+public class Exercicio01 {
+
+	public static void main(String[] args) {
+		JOptionPane.showMessageDialog(null,
+                "olá, participante, e bem-vindo",
+                "Bem-Vindo, participante!",
+                0);
+
+	}
+
+}
