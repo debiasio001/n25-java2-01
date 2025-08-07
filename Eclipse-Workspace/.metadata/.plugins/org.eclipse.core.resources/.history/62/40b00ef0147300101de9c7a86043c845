@@ -1,0 +1,15 @@
+package br.com.senaisp.bauru.secao03.aula07;
+
+import java.util.Scanner;
+
+public class Exempo02 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Digite seu nome completo:");
+		String nome = sc.next();// token padrao é espaço em branco
+		System.out.println("Seu nome é:" + nome);
+		sc.close();
+	}
+
+}
