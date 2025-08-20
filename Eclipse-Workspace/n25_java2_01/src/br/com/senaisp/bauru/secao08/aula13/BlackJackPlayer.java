@@ -46,4 +46,12 @@ public class BlackJackPlayer {
 	public ArrayList<Carta> getCartas() {
 		return cartas;
 	}
+	public int getTotalCarta() {
+		int tot = 0;
+		for (Carta ct : cartas) {
+			tot += ct.getValor();
+			
+		}
+		return tot;
+	}
 }
