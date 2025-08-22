@@ -3,17 +3,25 @@ package br.com.senaisp.bauru.secao08.aula15;
 public class PessoaTeste {
 
 	public static void main(String[] args) {
-		Pessoa pe01 = new Pessoa();
-		Pessoa pe02 = new Pessoa();
+		Pessoa pe01 = new PessoaFisica();
+		Pessoa pe02 = new PessoaJuridica();
 		pe01.setNome("Roberval da Silva");
 		pe01.setEndereço("Rua das Ruas, 1234");
-		pe01.setDocumento("123.456.789-09");
+		try {
+			pe01.setDocumento("123.456.789-09");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		pe01.setDataNascimento("20/05/1999");
 		
 		pe02.setNome("Roberval da Silva");
 		pe02.setEndereço("Rua das Ruas, 1234");
-		pe02.setDocumento("123.456.789-09");
-		pe02.setDataNascimento("20/05/1999");
+		try {
+			pe02.setDocumento("12345678909");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		pe02.setDataNascimento("20/05/1990");
 		
 		System.out.println(pe01);
 		System.out.println(pe02);

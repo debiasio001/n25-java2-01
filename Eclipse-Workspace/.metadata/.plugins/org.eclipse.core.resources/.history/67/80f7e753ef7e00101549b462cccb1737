@@ -1,0 +1,25 @@
+package br.com.senaisp.bauru.secao08.aula15;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ExemploExcecao {
+
+	public static void main(String[] args) {
+		Scanner sc =new Scanner(System.in);
+		try {
+		System.out.println("digite o valor de a: ");
+		int a= sc.nextInt();
+		System.out.println("digite o valor de b: ");
+		int b= sc.nextInt();
+		
+	    	System.out.println(a/b);
+	    }catch(ArithmeticException e) {
+	    	System.out.println("Ocorreu um erro divisão por zero!");
+	    }catch(InputMismatchException e) {
+	    	System.out.println("o valor deve ser inteiro!");
+	    }
+	    System.out.println("se nao der erro eu apareço!!");
+	}
+
+}

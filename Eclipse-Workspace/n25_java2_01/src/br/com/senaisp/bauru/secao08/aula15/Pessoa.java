@@ -1,18 +1,20 @@
 package br.com.senaisp.bauru.secao08.aula15;
 
-public class Pessoa {
+public abstract class Pessoa {
 	private static int contador = 0;
 	private String nome;
 	private int id;
 	private String documento;
 	private String endereço;
 	private String dataNascimento;
+	private char tipoPessoa;
+	
 	//constructor
 	public Pessoa() {
 		carregarId();
 		
 	}
-	public Pessoa (String nom, String doc, String ende, String dtNas) {
+	public Pessoa (String nom, String doc, String ende, String dtNas) throws Exception {
 		carregarId();
 		setNome(nom);
 		setDocumento(doc);
@@ -23,6 +25,12 @@ public class Pessoa {
 		id = ++contador;
 		
 	}
+	protected char getTipoPessoa() {
+		return tipoPessoa;
+	}
+	protected void setTipoPessoa(char tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -32,9 +40,16 @@ public class Pessoa {
 	public String getDocumento() {
 		return documento;
 	}
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setDocumento(String documento) throws Exception {
+		if(isDocumentovalido(documento)) {
+			this.documento = documento;
+		}else {
+			throw new Exception("Ducumento inválivo de acordo com o tipo de pessoa!");
+			
+			
+		}
 	}
+	protected abstract boolean isDocumentovalido(String documento2);
 	public String getEndereço() {
 		return endereço;
 	}
@@ -55,6 +70,7 @@ public class Pessoa {
 	public String toString() {
 		return "=".repeat(20)+"\n"+
 			   "Id: "+ getId()+"\n"+
+			   "Tipo: "+ getTipoPessoa()+ "\n"+
 			   "Nome: " + getNome()+"\n"+
 			   "Endereço: " + getEndereço()+"\n"+
 			   "Documento: " + getDocumento()+"\n"+
