@@ -14,7 +14,7 @@ public abstract class Pessoa {
 		carregarId();
 		
 	}
-	public Pessoa (String nom, String doc, String ende, String dtNas) throws Exception {
+	public Pessoa (String nom, String doc, String ende, String dtNas) throws DocumentoException, EnderecoExpception {
 		carregarId();
 		setNome(nom);
 		setDocumento(doc);
@@ -40,11 +40,11 @@ public abstract class Pessoa {
 	public String getDocumento() {
 		return documento;
 	}
-	public void setDocumento(String documento) throws Exception {
+	public void setDocumento(String documento) throws DocumentoException {
 		if(isDocumentovalido(documento)) {
 			this.documento = documento;
 		}else {
-			throw new Exception("Ducumento inválivo de acordo com o tipo de pessoa!");
+			throw new DocumentoException("Ducumento inválivo de acordo com o tipo de pessoa!");
 			
 			
 		}
@@ -53,7 +53,11 @@ public abstract class Pessoa {
 	public String getEndereço() {
 		return endereço;
 	}
-	public void setEndereço(String endereço) {
+	public void setEndereço(String endereço) throws EnderecoExpception {
+		if (!endereço.isEmpty()) {
+		}else {
+			throw new EnderecoExpception("Endereço deve ser preenchido");
+		}
 		this.endereço = endereço;
 	}
 	public String getDataNascimento() {

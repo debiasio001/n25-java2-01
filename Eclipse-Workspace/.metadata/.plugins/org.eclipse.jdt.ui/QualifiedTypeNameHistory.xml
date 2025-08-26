@@ -22,4 +22,8 @@
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula15.DocumentoException"/>
+    <fullyQualifiedTypeName name="br.com.senaisp.bauru.secao08.aula15.EnderecoExpception"/>
+    <fullyQualifiedTypeName name="br.com.senaisp.bauru.ingrid.test.ConectorBancoDadosTest"/>
+    <fullyQualifiedTypeName name="br.com.senaisp.bauru.ingrid.classes.ConectorBancoDados"/>
 </qualifiedTypeNameHistroy>

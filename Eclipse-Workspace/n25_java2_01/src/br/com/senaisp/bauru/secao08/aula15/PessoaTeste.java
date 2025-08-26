@@ -6,18 +6,26 @@ public class PessoaTeste {
 		Pessoa pe01 = new PessoaFisica();
 		Pessoa pe02 = new PessoaJuridica();
 		pe01.setNome("Roberval da Silva");
-		pe01.setEndereço("Rua das Ruas, 1234");
 		try {
+			pe01.setEndereço("Rua das Ruas, 1234");
 			pe01.setDocumento("123.456.789-09");
+		}catch (DocumentoException e) {
+			System.out.println("O Documento está inválido!");
+		}catch (EnderecoExpception e) {
+			System.out.println("O Endereço deve ser preenchido!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		pe01.setDataNascimento("20/05/1999");
 		
 		pe02.setNome("Roberval da Silva");
-		pe02.setEndereço("Rua das Ruas, 1234");
 		try {
+			pe02.setEndereço("Rua das Ruas, 1234");
 			pe02.setDocumento("12345678909");
+		}catch (DocumentoException e) {
+			System.out.println("O Documento está inválido!");
+		}catch (EnderecoExpception e) {
+			System.out.println("O Endereço deve ser preenchido!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
