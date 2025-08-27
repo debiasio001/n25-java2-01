@@ -1,0 +1,1 @@
+insert into produto(descricao, saldo, preco) values ('produto 1' , 5.0, 3.56)
