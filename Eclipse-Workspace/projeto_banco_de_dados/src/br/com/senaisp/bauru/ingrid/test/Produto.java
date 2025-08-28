@@ -1,6 +1,14 @@
 package br.com.senaisp.bauru.ingrid.test;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.xdevapi.Result;
 
 import br.com.senaisp.bauru.ingrid.classes.ConectorBancoDados;
 
@@ -11,10 +19,83 @@ public class Produto {
 	private double preco;
 	private ConectorBancoDados conn;
 	//constructor
-	public Produto(String decricao, double saldo, double preco) throws SQLException {
+	public Produto(String descricao, double saldo, double preco) throws SQLException {
+		this.id = 0;
 		this.descricao = descricao;
 		this.saldo = saldo;
 		this.preco = preco;
 		conn = ConectorBancoDados.getInstancia();
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	public double getPreco() {
+		return preco;
+	}
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+	public int getId() {
+		return id;
+	}
+	public  ConectorBancoDados getConn() {
+		return conn;
+	}
+	private void setId(int value) {
+		id = value;
+	}
+	//metodos
+	public static Produto create(String descricao,double saldo,double preco) throws SQLException {
+		Produto prd = new Produto(descricao,saldo,preco);
+		//disparando o sql para inserir o rigitro 
+		Connection co = prd.getConn().getConnection();
+		String sql = "insert into produto(descricao,saldo,preco) values (?,?,?)";
+		//preparando para executar
+		PreparedStatement stmt = co.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		//setar os valores das?
+		stmt.setString(1, descricao);
+		stmt.setDouble(2, saldo);
+		stmt.setDouble(3, preco);
+		//disparando o sql
+		int linhasAfetadas = stmt.executeUpdate();
+		System.out.println("inseri "+ linhasAfetadas+ " no banco");
+		//obtendo o id gerado 
+		ResultSet res = stmt.getGeneratedKeys();
+		res.next();
+		//obtend o valor de id e setando no field id do produto
+		prd.setId(res.getInt(1));
+		return prd;
+	}
+	public static List<Produto>listarProdutos(){
+		ArrayList<Produto> prd = new ArrayList<Produto>();
+		try {
+			Connection co = ConectorBancoDados.getInstancia().getConnection();
+			String sql = "select id, descricao, saldo, preco from produto order by id";
+			PreparedStatement stmt = co.prepareStatement(sql);
+			//disparando o sql de consulta
+			ResultSet rs =  stmt.executeQuery();
+			while (rs.next()){
+				Produto prod = parseResultado(rs);
+				prd.add(prod);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//devolvendo a lista de produtos ou vazio
+		return prd;
+	}
+	private static Produto parseResultado(ResultSet rs) throws SQLException {
+		Produto prod = new Produto(rs.getString(2),rs.getDouble(3),rs.getDouble(4));
+		prod.setId(rs.getInt(1));
+		return prod;
 	}
 }
