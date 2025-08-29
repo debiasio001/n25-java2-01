@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.xdevapi.Result;
-
 import br.com.senaisp.bauru.ingrid.classes.ConectorBancoDados;
 
 public class Produto {
@@ -54,6 +52,54 @@ public class Produto {
 		id = value;
 	}
 	//metodos
+	public void atualizarBanco() {
+		String sql =  "update produto set descricao = ? , saldo = ?, preco = ? where id = ? ";
+		//para salvar o registro, o id deve ser maior que 0
+		if(id>0) {
+			try {
+				PreparedStatement stmt =  conn.getConnection().prepareStatement(sql);
+				//passando os parametro para o sql
+				stmt.setString(1, getDescricao());
+				stmt.setDouble(2, getSaldo());
+				stmt.setDouble(3, getPreco());
+				stmt.setInt(4, id);
+				//executando a query
+				int numLim = stmt.executeUpdate();
+				System.out.println("Foram afetadas "+ numLim+ " linhas");
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	public void apagarRegistro() {
+			String sql =  "delete from produto where id = ?";
+			//para salvar o registro, o id deve ser maior que 0
+			if(id>0) {
+				try {
+					PreparedStatement stmt =  conn.getConnection().prepareStatement(sql);
+					//passando os parametro para o sql
+					stmt.setInt(1, id);
+					//executando a query
+					int numLim = stmt.executeUpdate();
+					System.out.println("Foram afetadas "+ numLim+ " linhas");
+					//limpando os conteudos do objeto
+					descricao= null;
+					preco= 0;
+					saldo= 0;
+					id = 0;
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+	}
+	
+	//metodos estaticos
 	public static Produto create(String descricao,double saldo,double preco) throws SQLException {
 		Produto prd = new Produto(descricao,saldo,preco);
 		//disparando o sql para inserir o rigitro 
@@ -92,6 +138,25 @@ public class Produto {
 		}
 		//devolvendo a lista de produtos ou vazio
 		return prd;
+	}
+	// consultar um produti pelo id
+	public static Produto consultarProdutoPorId(int pId) {
+		Produto ret = null;
+		try {
+			Connection conn = ConectorBancoDados.getInstancia().getConnection();
+			String sql = "select id,descricao,saldo, preco from produto where id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			//atribuindo o id para disparar a query
+			stmt.setInt(1, pId);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				ret = parseResultado(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ret;
 	}
 	private static Produto parseResultado(ResultSet rs) throws SQLException {
 		Produto prod = new Produto(rs.getString(2),rs.getDouble(3),rs.getDouble(4));

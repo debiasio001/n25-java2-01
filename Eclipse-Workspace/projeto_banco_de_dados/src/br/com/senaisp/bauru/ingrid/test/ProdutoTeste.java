@@ -2,6 +2,7 @@ package br.com.senaisp.bauru.ingrid.test;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 public class ProdutoTeste {
 
@@ -9,11 +10,24 @@ public class ProdutoTeste {
 		try {
 		Produto  prd = Produto.create("produto xpto", 5.0, 15.20);
 		System.out.println("Produto"+ prd.getId());
-		//listando os produtos 
+		//listando os produto
 		List<Produto> lista = Produto.listarProdutos();
 		for (Produto prod: lista) {
 			System.out.println(prod.getDescricao()+ "-"+ prod.getId());
 		}
+		//pesquisando um produto
+		System.out.println("Informe um intem a ser pesquisado: ");
+		Scanner sc = new Scanner(System.in);
+		int pId = sc.nextInt();
+		prd = Produto.consultarProdutoPorId(pId);
+		if (prd !=null) {
+			System.out.println("Produto: "+ prd.getDescricao());
+			prd.setDescricao("produto alterado -XPTO");
+			prd.setPreco(15.90);
+			//gravandoo produto
+			prd.atualizarBanco();
+		}
+		sc.close();//fechando o scanner
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
