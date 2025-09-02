@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private static String confirmarOperacao(Scanner sc)&apos; from &apos;br.com.senaisp.bauru.ingrid.test.Cadastramentoproduto.cadastrarProduto(...)&apos; to &apos;br.com.senaisp.bauru.ingrid.test.Cadastramentoproduto&apos;&#x0D;&#x0A;- Original project: &apos;projeto_banco_de_dados&apos;&#x0D;&#x0A;- Method name: &apos;confirmarOperacao&apos;&#x0D;&#x0A;- Destination type: &apos;br.com.senaisp.bauru.ingrid.test.Cadastramentoproduto&apos;&#x0D;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;confirmarOperacao&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;br.com.senaisp.bauru.ingrid.test{Cadastramentoproduto.java" name="confirmarOperacao" replace="false" selection="3528 86" stamp="1756770957625" version="1.0" visibility="2"/>
+</session>
