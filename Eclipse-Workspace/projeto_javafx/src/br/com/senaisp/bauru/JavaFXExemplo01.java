@@ -1,0 +1,45 @@
+package br.com.senaisp.bauru;
+
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class JavaFXExemplo01 extends Application {
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Button btn01= new Button("Botão 1");
+		Button btn02= new Button("Botão 2");
+		// poicionando botões eixo X
+		btn01.setLayoutX(10);
+		btn02.setLayoutX(150);
+		// eixo Y
+		btn01.setLayoutY(150);
+		btn02.setLayoutY(10);
+		// criando o container 
+		//StackPane root = new StackPane();
+		//TilePane root = new TilePane();
+		//VBox root = new VBox();
+		Group root = new Group();
+		// adicionando botoes no  painel
+		root.getChildren().addAll(btn01,btn02);
+		// criando a Scene
+		Scene cena = new Scene(root,600,800,Color.MAGENTA);
+		//amarrando o nó principal na tela
+		primaryStage.setTitle("Titulo da janela");
+		primaryStage.setScene(cena);
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+
+	}
+
+}
