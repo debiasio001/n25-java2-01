@@ -1,0 +1,36 @@
+package br.com.senaisp.bauru.classes;
+
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
+
+public class Duke extends Group {
+	private Image dukeImage;
+	private Image luvaImage;
+	private AudioClip som;
+	// imagem views
+	private ImageView dukeImgVw;
+	private ImageView luvaImgVw;
+	//constructor
+	public Duke() {
+		// carregando  as imagens 
+		dukeImage = new Image(getClass().getResourceAsStream("Images/Duke.png").toString());
+		luvaImage = new Image(getClass().getResourceAsStream("Images/Glove.png").toString());
+		//criando os imagesviews
+		dukeImgVw = new ImageView(dukeImage);
+		luvaImgVw = new ImageView(luvaImage);
+		// carregando o som 
+		som = new AudioClip(getClass().getResource("Audios/Note.wav").toString());
+		// dimensionando e posicionando os itens 
+		dukeImgVw.setFitWidth(50);
+		dukeImgVw.setPreserveRatio(true);// manter proporçao da imagem
+		dukeImgVw.setY(10);
+		//luva
+		luvaImgVw.setFitWidth(20);
+		luvaImgVw.setPreserveRatio(true);// manter proporçao da imagem
+		luvaImgVw.setY(17);
+		// adicionando os itens no group
+		getChildren().addAll(dukeImgVw,luvaImgVw);
+	}
+}

@@ -60,7 +60,11 @@ public class ManipuladorImagensApp extends Application {
 		btnPause.setOnAction((ev)->{mp.pause(); });
 		btnStop.setOnAction((ev)->{mp.stop(); });
 		//adicionando o no nó root
-		noRoot.getChildren().addAll(mvw, btnPlay, btnPause, btnStop);
+		//criando o duke
+		Duke duk = new Duke();
+		duk.setLayoutX(20);
+		duk.setLayoutY(20);
+		noRoot.getChildren().addAll(mvw, btnPlay, btnPause, btnStop,duk);
 		
 		
 		
